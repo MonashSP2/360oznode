@@ -24,7 +24,7 @@ router.get('/:xLowLeft/:yLowLeft/:xHighRight/:yHighRight', (req, res, next) => {
     const xHighRight = Number(req.params.xHighRight);
     const yHighRight = Number(req.params.yHighRight);
 
-    restaurant.find({latitude:{$gt:xLowLeft,$lt:xHighRight},longitude:{$gt:yLowLeft,$lt:yHighRight}}).sort( { votes: -1 } ).limit(5).exec().then(docs =>{
+    restaurant.find({latitude:{$gt:xLowLeft,$lt:xHighRight},longitude:{$gt:yLowLeft,$lt:yHighRight}}).sort( { votes: -1 } ).limit(50).exec().then(docs =>{
         console.log(docs);
         res.status(200).json(docs);
     })
