@@ -15,7 +15,10 @@ const restaurantRoutes = require('./routes/restaurants');
 const rScriptRoutes = require('./routes/r_script');
 // const restaurantRoutes = require('./routes/restaurants');
 const ethinicityRoutes = require('./routes/ethinicities');
-
+const interestRoutes = require('./routes/interests');
+const clinicRoutes = require('./routes/clinics');
+const communityRoutes = require('./routes/communities');
+const storeRoutes = require('./routes/stores');
 
 const app = express();
 
@@ -55,9 +58,10 @@ app.use('/restaurants',restaurantRoutes);
 
 app.use('/ethinicities',ethinicityRoutes);
 app.use('/rScript',rScriptRoutes);
-
-
-
+app.use('/interest',interestRoutes);
+app.use('/clinic',clinicRoutes);
+app.use('/community',communityRoutes);
+app.use('/store',storeRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

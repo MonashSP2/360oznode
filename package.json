@@ -10,12 +10,15 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "^4.16.3",
+    "fetch": "^1.1.0",
     "http-errors": "~1.6.2",
     "mongo": "^0.1.0",
     "mongoose": "^5.2.9",
     "morgan": "^1.9.0",
+    "node-fetch": "^2.2.0",
     "pug": "2.0.0-beta11",
-    "r-script": "0.0.3"
+    "r-script": "0.0.3",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.3"
