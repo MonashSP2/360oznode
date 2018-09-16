@@ -173,10 +173,11 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                             }
 
                             // let finalArray = [];
-                            let finalDistance = 0;
+                            let finalDistance = 1000000;
                             let finalIndex = 0;
                             for (let i =0;i<result.length;i++){
-                                if (result[i][0] > finalDistance){
+                                if (result[i][0] < finalDistance){
+                                    result[i][0] = finalDistance;
                                     finalIndex = i;
                                 }
                             }
