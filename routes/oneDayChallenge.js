@@ -164,10 +164,10 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                             for (let i =0;i<AB.length;i++){
                                 for (let j = 0 ;j< BC.length;j++){
                                     if (AB[i][2]===BC[j][1]){
-                                        result[i][0]=AB[i][0]+BC[j][0];
-                                        result[i][1]=AB[i][1];
-                                        result[i][2]=AB[i][2];
-                                        result[i][3]=BC[j][2];
+                                        // result[i][0]=AB[i][0]+BC[j][0];
+                                        result[i][0]=AB[i][1];
+                                        result[i][1]=AB[i][2];
+                                        result[i][2]=BC[j][2];
                                     }
                                 }
                             }
