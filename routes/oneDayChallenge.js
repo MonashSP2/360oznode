@@ -177,7 +177,7 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                             let finalIndex = 0;
                             for (let i =0;i<result.length;i++){
                                 if (result[i][0] < finalDistance){
-                                    result[i][0] = finalDistance;
+                                    finalDistance = result[i][0];
                                     finalIndex = i;
                                 }
                             }
