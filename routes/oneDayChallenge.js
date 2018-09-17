@@ -84,11 +84,11 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
     // lng=145.0266;
 
     const urlA = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ','+ lng +'&radius=5000&keyword='+ A +'&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+        + lat + ','+ lng +'&radius=1500&keyword='+ A +'&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
     const urlB = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ','+ lng +'&radius=5000&keyword='+ B +'&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+        + lat + ','+ lng +'&radius=1500&keyword='+ B +'&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
     const urlC = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ','+ lng +'&radius=5000&keyword='+ C +'&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+        + lat + ','+ lng +'&radius=1500&keyword='+ C +'&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
     // const fetch = require('node-fetch');
 
     let aArray = [];
