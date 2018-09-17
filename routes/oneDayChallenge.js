@@ -78,8 +78,10 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
     const A = req.params.A;
     const B = req.params.B;
     const C = req.params.C;
-    const lat = Number(req.params.lat);
-    const lng = Number(req.params.lng);
+    let lat = Number(req.params.lat);
+    let lng = Number(req.params.lng);
+    // lat = -37.884;
+    // lng=145.0266;
 
     const urlA = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
         + lat + ','+ lng +'&radius=2000&keyword='+ A +'&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
@@ -130,9 +132,9 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                             for (let i =0; i <aArray.length;i++){
                                 for (let j =0; j <bArray.length;j++){
                                     let distance = Math.abs(aArray[i]["latitude"] - bArray[j]["latitude"])
-                                        + Math.abs(aArray[i]["longitude"] - bArray[j]["longitude"]);
-                                        // + Math.abs(aArray[i]["longitude"] - lng)
-                                        // + Math.abs(aArray[i]["latitude"] - lat);
+                                        + Math.abs(aArray[i]["longitude"] - bArray[j]["longitude"])
+                                        + Math.abs(aArray[i]["longitude"] - lng)
+                                        + Math.abs(aArray[i]["latitude"] - lat);
                                     if (distance < temp0){
                                         temp0 = distance;
                                         temp1 = aArray[i];
