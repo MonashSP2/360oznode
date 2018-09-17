@@ -18,8 +18,13 @@ router.get('/', (req, res, next) => {
             // aArray = JSON.parse(aArray.toString());
             // const aObject = {};
             let resultArray = json["results"];
-            for (let i = 0; i < resultArray.length; i++){
-                let aObject = {"id":resultArray[i]["id"],"name": resultArray[i]["name"],"latitude":resultArray[i]["geometry"]["location"]["lat"],"longitude":resultArray[i]["geometry"]["location"]["lng"]};
+            for (let i = 0; i < resultArray.length; i++) {
+                let aObject = {
+                    "id": resultArray[i]["id"],
+                    "name": resultArray[i]["name"],
+                    "latitude": resultArray[i]["geometry"]["location"]["lat"],
+                    "longitude": resultArray[i]["geometry"]["location"]["lng"]
+                };
                 aArray.push(aObject)
 
 
@@ -84,11 +89,11 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
     // lng=145.0266;
 
     const urlA = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ','+ lng +'&radius=1500&keyword='+ A +'&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+        + lat + ',' + lng + '&radius=1500&keyword=' + A + '&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
     const urlB = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ','+ lng +'&radius=1500&keyword='+ B +'&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+        + lat + ',' + lng + '&radius=1500&keyword=' + B + '&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
     const urlC = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ','+ lng +'&radius=1500&keyword='+ C +'&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+        + lat + ',' + lng + '&radius=1500&keyword=' + C + '&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
     // const fetch = require('node-fetch');
 
     let aArray = [];
@@ -103,8 +108,13 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
         .then(res => res.json())
         .then(json => {
             let resultArray = json["results"];
-            for (let i = 0; i < resultArray.length; i++){
-                let aObject = {"id":resultArray[i]["id"],"name": resultArray[i]["name"],"latitude":resultArray[i]["geometry"]["location"]["lat"],"longitude":resultArray[i]["geometry"]["location"]["lng"]};
+            for (let i = 0; i < resultArray.length; i++) {
+                let aObject = {
+                    "id": resultArray[i]["id"],
+                    "name": resultArray[i]["name"],
+                    "latitude": resultArray[i]["geometry"]["location"]["lat"],
+                    "longitude": resultArray[i]["geometry"]["location"]["lng"]
+                };
                 aArray.push(aObject)
             }
             fetch(urlB)
@@ -112,8 +122,13 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                 .then(json => {
 
                     let resultArray = json["results"];
-                    for (let i = 0; i < resultArray.length; i++){
-                        let aObject = {"id":resultArray[i]["id"],"name": resultArray[i]["name"],"latitude":resultArray[i]["geometry"]["location"]["lat"],"longitude":resultArray[i]["geometry"]["location"]["lng"]};
+                    for (let i = 0; i < resultArray.length; i++) {
+                        let aObject = {
+                            "id": resultArray[i]["id"],
+                            "name": resultArray[i]["name"],
+                            "latitude": resultArray[i]["geometry"]["location"]["lat"],
+                            "longitude": resultArray[i]["geometry"]["location"]["lng"]
+                        };
                         bArray.push(aObject)
 
                     }
@@ -122,8 +137,13 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                         .then(json => {
 
                             let resultArray = json["results"];
-                            for (let i = 0; i < resultArray.length; i++){
-                                let aObject = {"id":resultArray[i]["id"],"name": resultArray[i]["name"],"latitude":resultArray[i]["geometry"]["location"]["lat"],"longitude":resultArray[i]["geometry"]["location"]["lng"]};
+                            for (let i = 0; i < resultArray.length; i++) {
+                                let aObject = {
+                                    "id": resultArray[i]["id"],
+                                    "name": resultArray[i]["name"],
+                                    "latitude": resultArray[i]["geometry"]["location"]["lat"],
+                                    "longitude": resultArray[i]["geometry"]["location"]["lng"]
+                                };
                                 cArray.push(aObject)
                             }
 
@@ -149,44 +169,50 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                             let temp2 = '';
                             let temp0 = 9999999;
 
-                                for (let j =0; j <aArray.length;j++){
-                                    let distance = Math.abs(aArray[j]["longitude"] - lng)
-                                        + Math.abs(aArray[j]["latitude"] - lat);
-                                    if (distance < temp0){
-                                        temp0 = distance;
-                                        // temp1 = aArray[i];
-                                        temp2 = aArray[j];
-                                    }
+                            for (let j = 0; j < aArray.length; j++) {
+                                let distance = Math.abs(aArray[j]["longitude"] - lng)
+                                    + Math.abs(aArray[j]["latitude"] - lat);
+                                if (distance < temp0) {
+                                    temp0 = distance;
+                                    // temp1 = aArray[i];
+                                    temp2 = aArray[j];
                                 }
-                            aResutlt.push(temp2);
+                            }
+                            if (A !== "a") {
+                                aResutlt.push(temp2);
+                            }
                             // ltemp1 = '';
                             temp2 = '';
                             temp0 = 9999999;
 
-                            for (let j =0; j <bArray.length;j++){
+                            for (let j = 0; j < bArray.length; j++) {
                                 let distance = Math.abs(bArray[j]["longitude"] - lng)
                                     + Math.abs(bArray[j]["latitude"] - lat);
-                                if (distance < temp0){
+                                if (distance < temp0) {
                                     temp0 = distance;
                                     // temp1 = aArray[i];
                                     temp2 = bArray[j];
                                 }
                             }
-                            aResutlt.push(temp2);
+                            if (B !== "a") {
+                                aResutlt.push(temp2);
+                            }
                             temp2 = '';
                             temp0 = 9999999;
 
-                            for (let j =0; j <cArray.length;j++){
+                            for (let j = 0; j < cArray.length; j++) {
                                 let distance = Math.abs(cArray[j]["longitude"] - lng)
                                     + Math.abs(cArray[j]["latitude"] - lat);
-                                if (distance < temp0){
+                                if (distance < temp0) {
                                     temp0 = distance;
                                     // temp1 = aArray[i];
                                     temp2 = cArray[j];
                                 }
                             }
-                            aResutlt.push(temp2);
-                                // AB.push(temp2);
+                            if (C !== "a") {
+                                aResutlt.push(temp2);
+                            }
+                            // AB.push(temp2);
 
                             // console.log(AB);
 
