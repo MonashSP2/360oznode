@@ -97,6 +97,7 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
     let AB = [];
     let BC = [];
     // let DE = [];
+    let aResutlt = [];
 
     fetch(urlA)
         .then(res => res.json())
@@ -126,68 +127,115 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                                 cArray.push(aObject)
                             }
 
+                            // let temp1 = '';
+                            // let temp2 = '';
+                            // let temp0 = 9999999;
+                            // for (let i =0; i <aArray.length;i++){
+                            //     for (let j =0; j <bArray.length;j++){
+                            //         let distance = Math.abs(aArray[i]["latitude"] - bArray[j]["latitude"])
+                            //             + Math.abs(aArray[i]["longitude"] - bArray[j]["longitude"])
+                            //             + Math.abs(aArray[i]["longitude"] - lng)
+                            //             + Math.abs(aArray[i]["latitude"] - lat);
+                            //         if (distance < temp0){
+                            //             temp0 = distance;
+                            //             temp1 = aArray[i];
+                            //             temp2 = bArray[j];
+                            //         }
+                            //     }
+                            //     AB.push([temp0,temp1,temp2])
+                            // }
+                            // console.log(AB);
                             let temp1 = '';
                             let temp2 = '';
                             let temp0 = 9999999;
-                            for (let i =0; i <aArray.length;i++){
-                                for (let j =0; j <bArray.length;j++){
-                                    let distance = Math.abs(aArray[i]["latitude"] - bArray[j]["latitude"])
-                                        + Math.abs(aArray[i]["longitude"] - bArray[j]["longitude"])
-                                        + Math.abs(aArray[i]["longitude"] - lng)
-                                        + Math.abs(aArray[i]["latitude"] - lat);
+
+                                for (let j =0; j <aArray.length;j++){
+                                    let distance = Math.abs(aArray[j]["longitude"] - lng)
+                                        + Math.abs(aArray[j]["latitude"] - lat);
                                     if (distance < temp0){
                                         temp0 = distance;
-                                        temp1 = aArray[i];
-                                        temp2 = bArray[j];
+                                        // temp1 = aArray[i];
+                                        temp2 = aArray[j];
                                     }
                                 }
-                                AB.push([temp0,temp1,temp2])
-                            }
-
-                            temp1 = '';
+                            aResutlt.push(temp2);
+                            // ltemp1 = '';
                             temp2 = '';
-                            temp0 = 9999;
-                            for (let i =0; i <bArray.length;i++){
-                                for (let j =0; j <cArray.length;j++){
-                                    let distance = Math.abs(bArray[i]["latitude"] - cArray[j]["latitude"])
-                                        + Math.abs(bArray[i]["longitude"] - cArray[j]["longitude"]);
-                                    if (distance < temp0){
-                                        temp0 = distance;
-                                        temp1 = bArray[i];
-                                        temp2 = cArray[j];
-                                    }
-                                }
-                                BC.push([temp0,temp1,temp2])
-                            }
+                            temp0 = 9999999;
 
-                            let result = []
-                            for (let i =0;i<AB.length;i++){
-                                result[i]=[];
-                            }
-
-                            for (let i =0;i<AB.length;i++){
-                                for (let j = 0 ;j< BC.length;j++){
-                                    if (AB[i][2]===BC[j][1]){
-                                        // result[i][0]=AB[i][0]+BC[j][0];
-                                        result[i][0]=AB[i][1];
-                                        result[i][1]=AB[i][2];
-                                        result[i][2]=BC[j][2];
-                                    }
+                            for (let j =0; j <bArray.length;j++){
+                                let distance = Math.abs(bArray[j]["longitude"] - lng)
+                                    + Math.abs(bArray[j]["latitude"] - lat);
+                                if (distance < temp0){
+                                    temp0 = distance;
+                                    // temp1 = aArray[i];
+                                    temp2 = bArray[j];
                                 }
                             }
+                            aResutlt.push(temp2);
+                            temp2 = '';
+                            temp0 = 9999999;
+
+                            for (let j =0; j <cArray.length;j++){
+                                let distance = Math.abs(cArray[j]["longitude"] - lng)
+                                    + Math.abs(cArray[j]["latitude"] - lat);
+                                if (distance < temp0){
+                                    temp0 = distance;
+                                    // temp1 = aArray[i];
+                                    temp2 = cArray[j];
+                                }
+                            }
+                            aResutlt.push(temp2);
+                                // AB.push(temp2);
+
+                            // console.log(AB);
+
+
+                            // temp1 = '';
+                            // temp2 = '';
+                            // temp0 = 9999;
+                            // for (let i =0; i <bArray.length;i++){
+                            //     for (let j =0; j <cArray.length;j++){
+                            //         let distance = Math.abs(bArray[i]["latitude"] - cArray[j]["latitude"])
+                            //             + Math.abs(bArray[i]["longitude"] - cArray[j]["longitude"]);
+                            //         if (distance < temp0){
+                            //             temp0 = distance;
+                            //             temp1 = bArray[i];
+                            //             temp2 = cArray[j];
+                            //         }
+                            //     }
+                            //     BC.push([temp0,temp1,temp2])
+                            // }
+                            //
+                            // let result = []
+                            // for (let i =0;i<AB.length;i++){
+                            //     result[i]=[];
+                            // }
+                            //
+                            // for (let i =0;i<AB.length;i++){
+                            //     for (let j = 0 ;j< BC.length;j++){
+                            //         if (AB[i][2]===BC[j][1]){
+                            //             // result[i][0]=AB[i][0]+BC[j][0];
+                            //             result[i][0]=AB[i][1];
+                            //             result[i][1]=AB[i][2];
+                            //             result[i][2]=BC[j][2];
+                            //         }
+                            //     }
+                            // }
 
                             // let finalArray = [];
-                            let finalDistance = 1000000;
-                            let finalIndex = 0;
-                            for (let i =0;i<result.length;i++){
-                                if (result[i][0] < finalDistance){
-                                    finalDistance = result[i][0];
-                                    finalIndex = i;
-                                }
-                            }
+                            // let finalDistance = 1000000;
+                            // let finalIndex = 0;
+                            // for (let i =0;i<result.length;i++){
+                            //     if (result[i][0] < finalDistance){
+                            //         finalDistance = result[i][0];
+                            //         finalIndex = i;
+                            //     }
+                            // }
 
-                            let finalArray = result[finalIndex];
-                            res.status(200).end(JSON.stringify(finalArray, undefined, 2))
+                            // let finalArray = result[finalIndex];
+                            // res.status(200).end(JSON.stringify(finalArray, undefined, 2))
+                            res.status(200).end(JSON.stringify(aResutlt, undefined, 2))
                         });
 
                 });
