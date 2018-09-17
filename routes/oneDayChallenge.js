@@ -130,9 +130,9 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                             for (let i =0; i <aArray.length;i++){
                                 for (let j =0; j <bArray.length;j++){
                                     let distance = Math.abs(aArray[i]["latitude"] - bArray[j]["latitude"])
-                                        + Math.abs(aArray[i]["longitude"] - bArray[j]["longitude"])
-                                        + Math.abs(aArray[i]["longitude"] - lng)
-                                        + Math.abs(aArray[i]["latitude"] - lat);
+                                        + Math.abs(aArray[i]["longitude"] - bArray[j]["longitude"]);
+                                        // + Math.abs(aArray[i]["longitude"] - lng)
+                                        // + Math.abs(aArray[i]["latitude"] - lat);
                                     if (distance < temp0){
                                         temp0 = distance;
                                         temp1 = aArray[i];
