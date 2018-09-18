@@ -4,6 +4,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const https = require("https");
 const request = require('request');
+const KEY = 'AIzaSyD_HKGG5CAXI7ZnekD_auJQ9m9EL_jnVwI';
 
 // const restaurant = require('../models/restaurant');
 
@@ -11,7 +12,7 @@ const request = require('request');
 router.get('/', (req, res, next) => {
 
 
-    const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&keyword=dog&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+    const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&keyword=dog&key='+KEY;
     const fetch = require('node-fetch')
     fetch(url)
         .then(res => res.json())
@@ -37,7 +38,7 @@ router.get('/:interest/:lat/:lng', (req, res, next) => {
     const lng = Number(req.params.lng);
 
     const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ','+ lng +'&radius=1500&keyword='+ interest +'&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+        + lat + ','+ lng +'&radius=1500&keyword='+ interest +'&key='+KEY;
     const fetch = require('node-fetch')
     fetch(url)
         .then(res => res.json())

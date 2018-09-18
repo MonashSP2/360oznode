@@ -5,11 +5,12 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const https = require("https");
 const request = require('request');
+const KEY = 'AIzaSyD_HKGG5CAXI7ZnekD_auJQ9m9EL_jnVwI';
 
 router.get('/', (req, res, next) => {
 
 
-    const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&keyword=dog&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+    const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&keyword=dog&key='+KEY;
     // const fetch = require('node-fetch')
     fetch(url)
         .then(res => res.json())
@@ -33,53 +34,9 @@ router.get('/', (req, res, next) => {
             res.status(200).send(JSON.stringify(aArray, undefined, 2))
         })
 });
-//
-// router.get('/:A', (req, res, next) => {
-//     const A = req.params.A;
-//     const B = 'bank';
-//     const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&keyword='+ A +
-//         '&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
-//     const urlB = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&keyword='+ B +
-//         '&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
-//
-//     let aArray = [];
-//     let bArray = [];
-//
-//     const fetch = require('node-fetch')
-//     fetch(url)
-//         .then(res => res.json())
-//         .then(json => {
-//             let resultArray = json["results"];
-//             for (let i = 0; i < resultArray.length; i++){
-//                 let aObject = {"id":resultArray[i]["id"],"name": resultArray[i]["name"],"latitude":resultArray[i]["geometry"]["location"]["lat"],"longitude":resultArray[i]["geometry"]["location"]["lng"]};
-//                 aArray.push(aObject)
-//             }
-//             fetch(urlB)
-//                 .then(res => res.json())
-//                 .then(json => {
-//                     let resultArray = json["results"];
-//                     for (let i = 0; i < resultArray.length; i++){
-//                         let aObject = {"id":resultArray[i]["id"],"name": resultArray[i]["name"],"latitude":resultArray[i]["geometry"]["location"]["lat"],"longitude":resultArray[i]["geometry"]["location"]["lng"]};
-//                         bArray.push(aObject)
-//                     }
-//
-//
-//                     res.status(200).send(JSON.stringify(aArray, undefined, 2))
-//                 })
-//
-//
-//             // res.status(200).send(JSON.stringify(aArray, undefined, 2))
-//         }).catch(err => {
-//         console.log(err);
-//         res.status(500).json({
-//             error: err
-//         })
-//     });
-//
-// });
-
 
 router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
+
     const A = req.params.A;
     const B = req.params.B;
     const C = req.params.C;
@@ -89,11 +46,11 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
     // lng=145.0266;
 
     const urlA = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + A + '&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+        + lat + ',' + lng + '&radius=1500&keyword=' + A + '&key='+KEY;
     const urlB = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + B + '&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+        + lat + ',' + lng + '&radius=1500&keyword=' + B + '&key='+KEY;
     const urlC = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + C + '&key=AIzaSyDWejPl19kAZYK_7DqzMOUilUszigBhvVk';
+        + lat + ',' + lng + '&radius=1500&keyword=' + C + '&key='+KEY;
     // const fetch = require('node-fetch');
 
     let aArray = [];
@@ -180,7 +137,7 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                             }
                             if (A !== "a") {
                                 aResutlt.push(temp2);
-                            }
+}
                             // ltemp1 = '';
                             temp2 = '';
                             temp0 = 9999999;
@@ -262,6 +219,167 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                             // let finalArray = result[finalIndex];
                             // res.status(200).end(JSON.stringify(finalArray, undefined, 2))
                             res.status(200).end(JSON.stringify(aResutlt, undefined, 2))
+                        });
+
+                });
+
+
+        });
+
+});
+
+router.get('/:A/:B/:C/:D/:lat/:lng', (req, res, next) => {
+
+    const A = req.params.A;
+    const B = req.params.B;
+    const C = req.params.C;
+    const D = req.params.D;
+    let lat = Number(req.params.lat);
+    let lng = Number(req.params.lng);
+    // lat = -37.884;
+    // lng=145.0266;
+
+    const urlA = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
+        + lat + ',' + lng + '&radius=1500&keyword=' + A + '&key='+KEY;
+    const urlB = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
+        + lat + ',' + lng + '&radius=1500&keyword=' + B + '&key='+KEY;
+    const urlC = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
+        + lat + ',' + lng + '&radius=1500&keyword=' + C + '&key='+KEY;
+    const urlD = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
+        + lat + ',' + lng + '&radius=1500&keyword=' + D + '&key='+KEY;
+    // const fetch = require('node-fetch');
+
+    let aArray = [];
+    let bArray = [];
+    let cArray = [];
+    let dArray = [];
+
+    let aResutlt = [];
+
+    fetch(urlA)
+        .then(res => res.json())
+        .then(json => {
+            let resultArray = json["results"];
+            for (let i = 0; i < resultArray.length; i++) {
+                let aObject = {
+                    "id": resultArray[i]["id"],
+                    "name": resultArray[i]["name"],
+                    "latitude": resultArray[i]["geometry"]["location"]["lat"],
+                    "longitude": resultArray[i]["geometry"]["location"]["lng"]
+                };
+                aArray.push(aObject)
+            }
+            fetch(urlB)
+                .then(res => res.json())
+                .then(json => {
+
+                    let resultArray = json["results"];
+                    for (let i = 0; i < resultArray.length; i++) {
+                        let aObject = {
+                            "id": resultArray[i]["id"],
+                            "name": resultArray[i]["name"],
+                            "latitude": resultArray[i]["geometry"]["location"]["lat"],
+                            "longitude": resultArray[i]["geometry"]["location"]["lng"]
+                        };
+                        bArray.push(aObject)
+
+                    }
+                    fetch(urlC)
+                        .then(res => res.json())
+                        .then(json => {
+
+                            let resultArray = json["results"];
+                            for (let i = 0; i < resultArray.length; i++) {
+                                let aObject = {
+                                    "id": resultArray[i]["id"],
+                                    "name": resultArray[i]["name"],
+                                    "latitude": resultArray[i]["geometry"]["location"]["lat"],
+                                    "longitude": resultArray[i]["geometry"]["location"]["lng"]
+                                };
+                                cArray.push(aObject)
+                            }
+                            fetch(urlD)
+                                .then(res => res.json())
+                                .then(json => {
+
+                                    let resultArray = json["results"];
+                                    for (let i = 0; i < resultArray.length; i++) {
+                                        let aObject = {
+                                            "id": resultArray[i]["id"],
+                                            "name": resultArray[i]["name"],
+                                            "latitude": resultArray[i]["geometry"]["location"]["lat"],
+                                            "longitude": resultArray[i]["geometry"]["location"]["lng"]
+                                        };
+                                        dArray.push(aObject)
+                                    }
+
+                                    let temp1 = '';
+                                    let temp2 = '';
+                                    let temp0 = 9999999;
+
+                                    for (let j = 0; j < aArray.length; j++) {
+                                        let distance = Math.abs(aArray[j]["longitude"] - lng)
+                                            + Math.abs(aArray[j]["latitude"] - lat);
+                                        if (distance < temp0) {
+                                            temp0 = distance;
+                                            // temp1 = aArray[i];
+                                            temp2 = aArray[j];
+                                        }
+                                    }
+                                    if (A !== "a") {
+                                        aResutlt.push(temp2);
+                                    }
+                                    // ltemp1 = '';
+                                    temp2 = '';
+                                    temp0 = 9999999;
+
+                                    for (let j = 0; j < bArray.length; j++) {
+                                        let distance = Math.abs(bArray[j]["longitude"] - lng)
+                                            + Math.abs(bArray[j]["latitude"] - lat);
+                                        if (distance < temp0) {
+                                            temp0 = distance;
+                                            // temp1 = aArray[i];
+                                            temp2 = bArray[j];
+                                        }
+                                    }
+                                    if (B !== "a") {
+                                        aResutlt.push(temp2);
+                                    }
+                                    temp2 = '';
+                                    temp0 = 9999999;
+
+                                    for (let j = 0; j < cArray.length; j++) {
+                                        let distance = Math.abs(cArray[j]["longitude"] - lng)
+                                            + Math.abs(cArray[j]["latitude"] - lat);
+                                        if (distance < temp0) {
+                                            temp0 = distance;
+                                            // temp1 = aArray[i];
+                                            temp2 = cArray[j];
+                                        }
+                                    }
+                                    if (C !== "a") {
+                                        aResutlt.push(temp2);
+                                    }
+                                    temp2 = '';
+                                    temp0 = 9999999;
+
+                                    for (let j = 0; j < dArray.length; j++) {
+                                        let distance = Math.abs(dArray[j]["longitude"] - lng)
+                                            + Math.abs(dArray[j]["latitude"] - lat);
+                                        if (distance < temp0) {
+                                            temp0 = distance;
+                                            // temp1 = aArray[i];
+                                            temp2 = dArray[j];
+                                        }
+                                    }
+                                    if (D !== "a") {
+                                        aResutlt.push(temp2);
+                                    }
+
+
+
+                                    res.status(200).end(JSON.stringify(aResutlt, undefined, 2))
+                                });
                         });
 
                 });
