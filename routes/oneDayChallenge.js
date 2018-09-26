@@ -11,7 +11,7 @@ const KEY = 'AIzaSyA9AsNR1CEC9DhDkro8FOnmDXHjaYjz5PM';//Ping
 router.get('/', (req, res, next) => {
 
 
-    const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&keyword=dog&key='+KEY;
+    const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&keyword=dog&key=' + KEY;
     // const fetch = require('node-fetch')
     fetch(url)
         .then(res => res.json())
@@ -47,11 +47,11 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
     // lng=145.0266;
 
     const urlA = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + A + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + A + '&key=' + KEY;
     const urlB = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + B + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + B + '&key=' + KEY;
     const urlC = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + C + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + C + '&key=' + KEY;
     // const fetch = require('node-fetch');
 
     let aArray = [];
@@ -138,7 +138,7 @@ router.get('/:A/:B/:C/:lat/:lng', (req, res, next) => {
                             }
                             if (A !== "a") {
                                 aResutlt.push(temp2);
-}
+                            }
                             // ltemp1 = '';
                             temp2 = '';
                             temp0 = 9999999;
@@ -242,13 +242,13 @@ router.get('/:A/:B/:C/:D/:lat/:lng', (req, res, next) => {
     // lng=145.0266;
 
     const urlA = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + A + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + A + '&key=' + KEY;
     const urlB = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + B + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + B + '&key=' + KEY;
     const urlC = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + C + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + C + '&key=' + KEY;
     const urlD = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + D + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + D + '&key=' + KEY;
     // const fetch = require('node-fetch');
 
     let aArray = [];
@@ -314,6 +314,10 @@ router.get('/:A/:B/:C/:D/:lat/:lng', (req, res, next) => {
                                         };
                                         dArray.push(aObject)
                                     }
+                                    //final result
+                                    let sortResult = [];
+                                    let basePointLng = lng;
+                                    let basePointLat = lat;
 
                                     let temp1 = '';
                                     let temp2 = '';
@@ -329,7 +333,10 @@ router.get('/:A/:B/:C/:D/:lat/:lng', (req, res, next) => {
                                         }
                                     }
                                     if (A !== "a") {
-                                        aResutlt.push(temp2);
+                                        // aResutlt.push(temp2);
+                                        sortResult.push(temp2);
+                                        basePointLng = temp2["longitude"];
+                                        basePointLat = temp2["latitude"];
                                     }
                                     // ltemp1 = '';
                                     temp2 = '';
@@ -378,9 +385,25 @@ router.get('/:A/:B/:C/:D/:lat/:lng', (req, res, next) => {
                                         aResutlt.push(temp2);
                                     }
 
+                                    temp2 = '';
+                                    temp0 = 9999999;
+                                    while (aResutlt.length >0 ) {
+                                        for (let j = 0; j < aResutlt.length; j++) {
+                                            let distance = Math.abs(basePointLng - lng)
+                                                + Math.abs(basePointLat - lat);
+                                            if (distance < temp0) {
+                                                temp0 = distance;
+                                                temp2 = j;
+                                            }
+                                        }
+                                        sortResult.push(aResutlt[temp2]);
+                                        basePointLng = aResutlt[temp2]["longitude"];
+                                        basePointLat = aResutlt[temp2]["latitude"];
+                                        aResutlt.splice(temp2,1);
+                                    }
 
 
-                                    res.status(200).end(JSON.stringify(aResutlt, undefined, 2))
+                                    res.status(200).end(JSON.stringify(sortResult, undefined, 2))
                                 });
                         });
 
@@ -405,15 +428,15 @@ router.get('/:A/:B/:C/:D/:E/:lat/:lng', (req, res, next) => {
     // lng=145.0266;
 
     const urlA = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + A + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + A + '&key=' + KEY;
     const urlB = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + B + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + B + '&key=' + KEY;
     const urlC = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + C + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + C + '&key=' + KEY;
     const urlD = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + D + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + D + '&key=' + KEY;
     const urlE = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + E + '&key='+KEY;
+        + lat + ',' + lng + '&radius=1500&keyword=' + E + '&key=' + KEY;
     // const fetch = require('node-fetch');
 
     let aArray = [];
@@ -496,6 +519,10 @@ router.get('/:A/:B/:C/:D/:E/:lat/:lng', (req, res, next) => {
                                                 eArray.push(aObject)
                                             }
 
+                                            //final result
+                                            let sortResult = [];
+                                            let basePointLng = lng;
+                                            let basePointLat = lat;
 
                                             let temp1 = '';
                                             let temp2 = '';
@@ -511,7 +538,10 @@ router.get('/:A/:B/:C/:D/:E/:lat/:lng', (req, res, next) => {
                                                 }
                                             }
                                             if (A !== "a") {
-                                                aResutlt.push(temp2);
+                                                //aResutlt.push(temp2);
+                                                sortResult.push(temp2);
+                                                basePointLng = temp2["longitude"];
+                                                basePointLat = temp2["latitude"];
                                             }
                                             // ltemp1 = '';
                                             temp2 = '';
@@ -575,8 +605,25 @@ router.get('/:A/:B/:C/:D/:E/:lat/:lng', (req, res, next) => {
                                                 aResutlt.push(temp2);
                                             }
 
+                                            temp2 = '';
+                                            temp0 = 9999999;
+                                            while (aResutlt.length >0 ) {
+                                                for (let j = 0; j < aResutlt.length; j++) {
+                                                    let distance = Math.abs(basePointLng - lng)
+                                                        + Math.abs(basePointLat - lat);
+                                                    if (distance < temp0) {
+                                                        temp0 = distance;
+                                                        temp2 = j;
+                                                    }
+                                                }
+                                                sortResult.push(aResutlt[temp2]);
+                                                basePointLng = aResutlt[temp2]["longitude"];
+                                                basePointLat = aResutlt[temp2]["latitude"];
+                                                aResutlt.splice(temp2,1);
+                                            }
 
-                                            res.status(200).end(JSON.stringify(aResutlt, undefined, 2))
+
+                                            res.status(200).end(JSON.stringify(sortResult, undefined, 2))
                                         });
                                 });
                         });
