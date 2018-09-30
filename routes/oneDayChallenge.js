@@ -428,15 +428,15 @@ router.get('/:A/:B/:C/:D/:E/:lat/:lng', (req, res, next) => {
     // lng=145.0266;
 
     const urlA = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + A + '&key=' + KEY;
+        + lat + ',' + lng + '&radius=5000&keyword=' + A + '&key=' + KEY;
     const urlB = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + B + '&key=' + KEY;
+        + lat + ',' + lng + '&radius=5000&keyword=' + B + '&key=' + KEY;
     const urlC = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + C + '&key=' + KEY;
+        + lat + ',' + lng + '&radius=5000&keyword=' + C + '&key=' + KEY;
     const urlD = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + D + '&key=' + KEY;
+        + lat + ',' + lng + '&radius=5000&keyword=' + D + '&key=' + KEY;
     const urlE = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        + lat + ',' + lng + '&radius=1500&keyword=' + E + '&key=' + KEY;
+        + lat + ',' + lng + '&radius=5000&keyword=' + E + '&key=' + KEY;
     // const fetch = require('node-fetch');
 
     let aArray = [];
