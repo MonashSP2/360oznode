@@ -7,7 +7,12 @@
 const app = require('../app');
 const debug = require('debug')('nodeparsebody:server');
 const http = require('http');
+// const https = require('https');
 
+// const options = {
+//     key: '',
+//     cert: ''
+// };
 /**
  * Get port from environment and store in Express.
  */
@@ -19,6 +24,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 const server = http.createServer(app);
+// const server = https.createServer(options,app);
 
 /**
  * Listen on provided port, on all network interfaces.

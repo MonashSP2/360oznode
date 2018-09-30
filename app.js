@@ -20,6 +20,7 @@ const clinicRoutes = require('./routes/clinics');
 const communityRoutes = require('./routes/communities');
 const storeRoutes = require('./routes/stores');
 const oneDayChallengeRoutes = require('./routes/oneDayChallenge');
+const sendEmail = require('./routes/sendEmail');
 
 const app = express();
 
@@ -64,6 +65,7 @@ app.use('/clinic',clinicRoutes);
 app.use('/community',communityRoutes);
 app.use('/store',storeRoutes);
 app.use('/ondaychallenge',oneDayChallengeRoutes);
+app.use('/sendEmail',sendEmail);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
