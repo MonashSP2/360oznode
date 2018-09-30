@@ -42,15 +42,15 @@ router.post('/', (req, res) =>{
             port: 587,
             secure: false,
             auth: {
-                // user: 'threesixtyoz@hotmail.com', // generated ethereal user
-                user: 'threesixtyoztest@hotmail.com',
+                user: 'threesixtyoz@hotmail.com', // generated ethereal user
+                // user: 'threesixtyoztest@hotmail.com',
                 pass: 'Developweb3600' // generated ethereal password
             },
 
         });
         let mailOptions = {
-            // from: 'threesixtyoz@hotmail.com', // sender address
-            from: 'threesixtyoztest@hotmail.com',
+            from: 'threesixtyoz@hotmail.com', // sender address
+            // from: 'threesixtyoztest@hotmail.com',
             to: req.body.email, // list of receivers
             subject: '360OZ 3 day challenge plan!', // Subject line
             text: 'Hello world?', // plain text body
