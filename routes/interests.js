@@ -13,7 +13,7 @@ const KEY = 'AIzaSyA9AsNR1CEC9DhDkro8FOnmDXHjaYjz5PM';
 router.get('/', (req, res, next) => {
 
 
-    const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&keyword=dog&key='+KEY;
+    const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=chineseresturant&keyword=resturant&key='+KEY;
     const fetch = require('node-fetch')
     fetch(url)
         .then(res => res.json())
