@@ -12,6 +12,37 @@ router.post('/', (req, res) =>{
     // console.log(res.body.day1message);
 
     nodemailer.createTestAccount((err, account) => {
+        let day1 = req.body.day1message;
+        let day1Result = [];
+        for (let i=0;i<day1.length;i++){
+            if (day1[i]!==null) {
+                day1Result.push(day1[i]["name"].link('www.google.com/maps/place/' + day1[i]["latitude"] + ',' + day1[i]["longitude"]));
+            }
+        }
+        let day1JSON = JSON.stringify(day1Result,null,'\t');
+        day1JSON=day1JSON.replace(/"/gi, '').replace(/\[/, '').replace(/\]/, '');
+
+
+        let day2 = req.body.day2message;
+        let day2Result = [];
+        for (let i=0;i<day2.length;i++){
+            if (day2[i]!==null) {
+                day2Result.push(day2[i]["name"].link('www.google.com/maps/place/' + day2[i]["latitude"] + ',' + day2[i]["longitude"]));
+            }
+        }
+        let day2JSON = JSON.stringify(day2Result,null,'\t');
+        day2JSON=day2JSON.replace(/"/gi, '').replace(/\[/, '').replace(/\]/, '');
+
+        // format day 3 message
+        let day3 = req.body.day3message;
+        let day3Result = [];
+        for (let i=0;i<day3.length;i++){
+            if (day3[i]!==null) {
+                day3Result.push(day3[i]["name"].link('www.google.com/maps/place/' + day3[i]["latitude"] + ',' + day3[i]["longitude"]));
+            }
+        }
+        let day3JSON = JSON.stringify(day3Result,null,'\t');
+        day3JSON=day3JSON.replace(/"/gi, '').replace(/\[/, '').replace(/\]/, '');
         // console.log(day1message);
         const htmlEmail = `
       <ul>
@@ -20,19 +51,21 @@ router.post('/', (req, res) =>{
       </ul>
             <h3>Day 1: ARRIVE</h3>
       <ul>
-            <li>${JSON.stringify(req.body.day1message)}</li>
+            <pre>${day1JSON}</pre>      
+            <pre> </pre>
       </ul>
-
             <h3>Day 2: REVIVE</h3>
 
       <ul>
-            <li>${JSON.stringify(req.body.day2message)}</li>
+            <pre>${day2JSON}</pre>
+            <pre> </pre>
       </ul>
 
             <h3>Day 3: IMMERSE</h3>
 
       <ul>
-            <li>${JSON.stringify(req.body.day3message)}</li>
+            <pre>${day3JSON}</pre>
+            <pre> </pre>
       </ul>
 
         <h3>Thank you and we hope you enjoy your journey ahead!</h3>
