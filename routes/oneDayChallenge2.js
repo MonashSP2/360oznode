@@ -20,7 +20,9 @@ router.get('/', (req, res, next) => {
                     "id": resultArray[i]["id"],
                     "name": resultArray[i]["name"],
                     "latitude": resultArray[i]["geometry"]["location"]["lat"],
-                    "longitude": resultArray[i]["geometry"]["location"]["lng"]
+                    "longitude": resultArray[i]["geometry"]["location"]["lng"],
+                    "rating": resultArray[i]["rating"],
+                    "address":resultArray[i]["vicinity"]
                 };
                 aArray.push(aObject)
 
