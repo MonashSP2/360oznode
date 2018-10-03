@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 const https = require("https");
 const request = require('request');
 // const KEY = 'AIzaSyD_HKGG5CAXI7ZnekD_auJQ9m9EL_jnVwI';//Pam
-const KEY = 'AIzaSyA9AsNR1CEC9DhDkro8FOnmDXHjaYjz5PM';//Ping
+// const KEY = 'AIzaSyA9AsNR1CEC9DhDkro8FOnmDXHjaYjz5PM';//Ping
+const KEY = 'AIzaSyD05onCqk7_ef5A4G6dsMXi-wUKwsKSF-Y';
 
 router.get('/', (req, res, next) => {
 
