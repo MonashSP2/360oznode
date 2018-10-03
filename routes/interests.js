@@ -49,7 +49,14 @@ router.get('/:interest/:lat/:lng', (req, res, next) => {
             // const aObject = {};
             let resultArray = json["results"];
             for (let i = 0; i < resultArray.length; i++){
-                let aObject = {"id":resultArray[i]["id"],"name": resultArray[i]["name"],"latitude":resultArray[i]["geometry"]["location"]["lat"],"longitude":resultArray[i]["geometry"]["location"]["lng"]};
+                let aObject = {
+                    "id":resultArray[i]["id"],
+                    "name": resultArray[i]["name"],
+                    "latitude":resultArray[i]["geometry"]["location"]["lat"],
+                    "longitude":resultArray[i]["geometry"]["location"]["lng"],
+                    "rating": resultArray[i]["rating"],
+                    "address":resultArray[i]["vicinity"]
+                };
                 aArray.push(aObject)
 
 
