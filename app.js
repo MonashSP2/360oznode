@@ -23,6 +23,8 @@ const oneDayChallengeRoutes = require('./routes/oneDayChallenge');
 const oneDayChallenge2Routes = require('./routes/oneDayChallenge2');
 const sendEmail = require('./routes/sendEmail');
 
+const day3ChallengeRoutes = require('./routes/day3Challenge');
+
 const app = express();
 
 // const MongoClient = require('mongodb').MongoClient;
@@ -68,6 +70,8 @@ app.use('/store',storeRoutes);
 app.use('/ondaychallenge',oneDayChallengeRoutes);
 app.use('/ondaychallenge2',oneDayChallenge2Routes);
 app.use('/sendEmail',sendEmail);
+
+app.use('/day3challenge',day3ChallengeRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
