@@ -16,7 +16,7 @@ router.post('/', (req, res) =>{
         let day1Result = [];
         for (let i=0;i<day1.length;i++){
             if (day1[i]!==null) {
-                day1Result.push(day1[i]["name"].link('www.google.com/maps/place/' + day1[i]["latitude"] + ',' + day1[i]["longitude"]));
+                day1Result.push(day1[i]["type"] + day1[i]["name"].link('www.google.com/maps/place/' + day1[i]["latitude"] + ',' + day1[i]["longitude"]));
             }
         }
         let day1JSON = JSON.stringify(day1Result,null,'\t');
@@ -27,7 +27,7 @@ router.post('/', (req, res) =>{
         let day2Result = [];
         for (let i=0;i<day2.length;i++){
             if (day2[i]!==null) {
-                day2Result.push(day2[i]["name"].link('www.google.com/maps/place/' + day2[i]["latitude"] + ',' + day2[i]["longitude"]));
+                day2Result.push(day2[i]["type"] + day2[i]["name"].link('www.google.com/maps/place/' + day2[i]["latitude"] + ',' + day2[i]["longitude"]));
             }
         }
         let day2JSON = JSON.stringify(day2Result,null,'\t');
@@ -38,7 +38,7 @@ router.post('/', (req, res) =>{
         let day3Result = [];
         for (let i=0;i<day3.length;i++){
             if (day3[i]!==null) {
-                day3Result.push(day3[i]["name"].link('www.google.com/maps/place/' + day3[i]["latitude"] + ',' + day3[i]["longitude"]));
+                day3Result.push(day3[i]["types"] + day3[i]["name"].link('www.google.com/maps/place/' + day3[i]["latitude"] + ',' + day3[i]["longitude"]));
             }
         }
         let day3JSON = JSON.stringify(day3Result,null,'\t');
