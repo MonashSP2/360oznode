@@ -17,10 +17,12 @@ router.post('/', (req, res) =>{
         for (let i=0;i<day1.length;i++){
             if (day1[i]!==null) {
                 day1Result.push(day1[i]["type"] +" "+ day1[i]["name"].link('www.google.com/maps/place/' + day1[i]["latitude"] + ',' + day1[i]["longitude"]));
+                // day1Result.push('<a href="'+ 'http://www.google.com/maps/place/' + day1[i]["latitude"] + ',' + day1[i]["longitude"] +'">'+day1[i]["name"]+'</a>');
             }
         }
         let day1JSON = JSON.stringify(day1Result,null,'\t');
         day1JSON=day1JSON.replace(/"/gi, '').replace(/\[/, '').replace(/\]/, '');
+
 
 
         let day2 = req.body.day2message;
@@ -49,19 +51,19 @@ router.post('/', (req, res) =>{
             <li>Hello and welcome to 360Oz!</li>
             <li>You have successfully generated your 3 Day Plan. Below are the details for your plan:</li>
       </ul>
-            <h3>Day 1: ARRIVE</h3>
+            <h3>Day 1: Set up the basics</h3>
       <ul>
             <pre>${day1JSON}</pre>      
             <pre> </pre>
       </ul>
-            <h3>Day 2: REVIVE</h3>
+            <h3>Day 2: Shop for the essentials</h3>
 
       <ul>
             <pre>${day2JSON}</pre>
             <pre> </pre>
       </ul>
 
-            <h3>Day 3: IMMERSE</h3>
+            <h3>Day 3: Explore Melbourne</h3>
 
       <ul>
             <pre>${day3JSON}</pre>
